@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Category from "./components/Category";
 import Header from "./components/Header";
+import Loading from "./components/Loading";
 import Panier from "./components/Panier";
 import Restaurant from "./components/Restaurant";
 
@@ -31,7 +32,7 @@ function App() {
     fetchData();
   }, []);
   return isLoading ? (
-    <p>loading in progress...</p>
+    <Loading />
   ) : (
     <>
       <header>
