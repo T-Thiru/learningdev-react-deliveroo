@@ -12,6 +12,12 @@ body {
 .logo {
   margin: 20px 0;
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 header {
   border-bottom: 1px solid rgb(197, 197, 197);
   background-color: white;

@@ -32,7 +32,9 @@ function App() {
     fetchData();
   }, []);
   return isLoading ? (
-    <Loading />
+    <div className="loading">
+      <Loading />
+    </div>
   ) : (
     <>
       <header>
