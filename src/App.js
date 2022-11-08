@@ -12,12 +12,13 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [panier, setPanier] = useState([]);
   const [isPanier, setIsPanier] = useState(false);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3200/");
-        console.log(response.data);
+
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -47,12 +48,21 @@ function App() {
                   category={el}
                   panier={panier}
                   setPanier={setPanier}
+                  setIsPanier={setIsPanier}
+                  total={total}
+                  setTotal={setTotal}
                 />
               );
             })}
           </section>
           <div>
-            <Panier panier={panier} isPanier={isPanier} />
+            <Panier
+              panier={panier}
+              setPanier={setPanier}
+              isPanier={isPanier}
+              total={total}
+              setTotal={setTotal}
+            />
           </div>
         </div>
       </main>

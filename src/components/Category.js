@@ -1,29 +1,63 @@
 import React from "react";
 import grade from "../assets/img/grade.svg";
 
-const Category = ({ category, panier, setPanier }) => {
-  const clickMenu = (menu) => {
+const Category = ({
+  category,
+  panier,
+  setPanier,
+  setIsPanier,
+  total,
+  setTotal,
+}) => {
+  const clickMenu = (menu, id, price) => {
     const newPanier = [...panier];
-    newPanier.push({ quantity: 1, menu: menu });
-    setPanier(newPanier);
+
+    if (newPanier.length > 0) {
+      const position = newPanier.map((e) => e.menu).indexOf(menu);
+
+      if (position >= 0) {
+        // console.log("inclus");
+        newPanier[position].quantity++;
+        setTotal((total = total + Number(newPanier[position].price)));
+        setPanier(newPanier);
+      } else {
+        newPanier.push({
+          quantity: 1,
+          menu: menu,
+          price: price,
+        });
+        // console.log("not inclus");
+        setTotal((total = total + Number(price)));
+        setPanier(newPanier);
+      }
+    } else {
+      newPanier.push({
+        quantity: 1,
+        menu: menu,
+        price: price,
+      });
+      setIsPanier(true);
+      setTotal((total = total + Number(newPanier[0].price)));
+      setPanier(newPanier);
+    }
   };
 
   return (
     <div className="wrapper">
       <h2 className="category">{category.name}</h2>
       <div className="meal">
-        {category.meals.map((meal, i) => {
+        {category.meals.map((meal) => {
           return (
             <div
-              key={i}
+              key={meal.id}
               className="card-menu"
               onClick={() => {
-                clickMenu(meal.title);
+                clickMenu(meal.title, meal.id, meal.price);
               }}
             >
               <div>
                 <div>
-                  <h3>{meal.title}</h3>
+                  <h4>{meal.title}</h4>
                   {meal.description ? (
                     <p className="description">{meal.description}</p>
                   ) : (
