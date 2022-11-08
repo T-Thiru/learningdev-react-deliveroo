@@ -1,10 +1,11 @@
 import axios from "axios";
+import ProgressBar from "react-bootstrap/ProgressBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import "./App.css";
 import Category from "./components/Category";
 import Header from "./components/Header";
-import Loading from "./components/Loading";
+
 import Panier from "./components/Panier";
 import Restaurant from "./components/Restaurant";
 
@@ -33,7 +34,7 @@ function App() {
   }, []);
   return isLoading ? (
     <div className="loading">
-      <Loading />
+      <ProgressBar animated now={45} />
     </div>
   ) : (
     <>
