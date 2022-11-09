@@ -1,7 +1,14 @@
 import React from "react";
 import ItemPanier from "./ItemPanier";
 
-const Panier = ({ panier, isPanier, setPanier, total, setTotal }) => {
+const Panier = ({
+  panier,
+  isPanier,
+  setPanier,
+  total,
+  setTotal,
+  setIsPanier,
+}) => {
   return (
     <div className="panier">
       {isPanier ? (
@@ -28,6 +35,7 @@ const Panier = ({ panier, isPanier, setPanier, total, setTotal }) => {
                 index={index}
                 total={total}
                 setTotal={setTotal}
+                setIsPanier={setIsPanier}
               />
             </div>
           );

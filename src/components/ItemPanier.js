@@ -1,6 +1,14 @@
 import React from "react";
 
-const ItemPanier = ({ cart, panier, setPanier, index, total, setTotal }) => {
+const ItemPanier = ({
+  cart,
+  panier,
+  setPanier,
+  index,
+  total,
+  setTotal,
+  setIsPanier,
+}) => {
   const onClickPlus = (index) => {
     const newPanier = [...panier];
 
@@ -16,7 +24,11 @@ const ItemPanier = ({ cart, panier, setPanier, index, total, setTotal }) => {
       newPanier.splice(newPanier.indexOf(newPanier[index]), 1);
       setPanier(newPanier);
     }
+
     setPanier(newPanier);
+    if (panier.lenght == 0) {
+      setIsPanier(false);
+    }
   };
 
   return (
